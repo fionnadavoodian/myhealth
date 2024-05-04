@@ -1,0 +1,28 @@
+/* CustomNavbar.css */
+
+.custom-navbar {
+    transition: background-image 0.3s ease;
+}
+
+.custom-navbar.dark {
+    background-color: #000000;
+    /* Dark mode background color */
+    color: #FFFFFF;
+    /* Dark mode text color */
+}
+
+.custom-navbar.light {
+    background-color: #FFFFFF;
+    /* Light mode background color */
+    color: #5469D4;
+    /* Light mode text color */
+}
+
+.navbar-nav .nav-link {
+    color: inherit;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #CCCCCC;
+    /* Change color on hover */
+}
