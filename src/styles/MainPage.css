@@ -1,0 +1,27 @@
+.container {
+    font-family: 'IBM Plex Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+.btn {
+    margin-top: 20px;
+}
+
+.signIn-text {
+    margin-top: 20px;
+    color: #5469D4;
+    font-size: 0.875rem;
+}
+
+.signIn-text a {
+    color: #5469D4;
+    text-decoration: underline;
+}

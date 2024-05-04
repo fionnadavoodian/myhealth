@@ -1,8 +1,8 @@
 import './App.css';
 import React, { useState } from 'react';
 import CustomNavbar from './components/CustomNavbar';
-import { ReactComponent as ImageDark } from './images/navbar-dark.svg';
-import { ReactComponent as ImageLight } from './images/navbar-light.svg';
+import { ReactComponent as NavDark } from './images/navbar-dark.svg';
+import { ReactComponent as NavLight } from './images/navbar-light.svg';
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
   return (
     <div>
       <CustomNavbar darkMode={darkMode} handleThemeChange={handleThemeChange} />
-      {darkMode ? <ImageDark className='theme-style dark' /> : <ImageLight className='theme-style light' />}
+      {darkMode ? <NavDark className='theme-style dark' /> : <NavLight className='theme-style light' />}
 
 
     </div>

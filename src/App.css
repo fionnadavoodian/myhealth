@@ -20,10 +20,11 @@
 .theme-style {
   position: fixed;
   top: -5vh;
-  left: -5vw;
+  left: 0;
   right: 0;
   margin: auto;
-  object-fit: contain;
+  width: 100%;
   z-index: -1;
+  object-fit: contain;
   overflow: hidden;
 }
