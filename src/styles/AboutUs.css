@@ -1,0 +1,44 @@
+.about-us-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-us-container {
+    width: calc(100% - 150px);
+    max-width: 1200px;
+    height: 95%;
+    padding: 5vw;
+    text-align: center;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.about-us-heading {
+    font-size: 2.25vw;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.about-us-text {
+    font-size: 1.25vw;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.brand-name {
+    font-weight: bold;
+    color: calc(var(--text-color)-20);
+}

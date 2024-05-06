@@ -1,65 +1,78 @@
-.main-page-wrapper {
-    position: relative;
-    z-index: 1;
-}
-
-.main-page-wrapper.dark {
-    background-color: #5469D4;
-}
-
-.main-page-wrapper.light {
-    background-color: white;
-}
+/* MainPage.css */
 
 .main-page-container {
+    width: calc(100% - 150px);
+    max-width: 1200px;
+    height: 95%;
+    padding: 5vw;
     text-align: center;
-    padding: 0 50px 0 50px;
-    background-color: #5469D4;
-    border-radius: 20px;
-    color: white;
-
-}
-
-.main-page-container.dark {
-    background-color: white;
-    color: #5469D4;
+    font-family: Arial;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    /* border: solid 2px var(--text-color); */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .main-page-heading {
-    font-size: 24px;
-
+    font-size: 2vw;
 }
 
 .main-page-button {
-    margin-top: 20px;
+    margin-top: 2vh;
     border-radius: 20px;
-    border: 0;
-    color: #5469D4;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: white;
-
-}
-
-.main-page-button .dark {
-    color: white;
-    background-color: #5469D4;
-
+    border: none;
+    font-size: 3vw;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .main-page-button:hover {
     background-color: #4354ac;
+    color: aliceblue;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-
 }
 
+@media (max-width: 768px) {
+    .main-page-button {
+        font-size: 0.8vw;
+    }
+}
 
+.main-page-sign-in {
+    font-size: 1.25vw;
+    width: 100;
+    padding: 5px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: first baseline;
+}
 
 .main-page-sign-in a {
-    color: #5469D4;
-    /* Bootstrap primary color */
+    font-size: 1vw;
+    color: var(--text-color);
     text-decoration: none;
 }
 
 .main-page-sign-in a:hover {
     text-decoration: underline;
+}
+
+.main-page-image {
+    margin-top: 7vb;
+    height: 70%;
+    width: 100%;
+
+}
+
+.image-svg {
+    height: 100%;
+    width: auto;
 }

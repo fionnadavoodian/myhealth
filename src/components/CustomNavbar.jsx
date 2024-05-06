@@ -9,14 +9,14 @@ const tabs = [
     { id: 'contact', text: 'Contact Us' }
 ];
 
-function CustomNavbar({ darkMode, handleThemeChange }) {
+function CustomNavbar({ darkMode, handleThemeChange, handleTabChange, activeTab }) {
     const handleDarkModeToggle = () => {
         handleThemeChange();
     };
 
     return (
         <Navbar
-            className={`custom-navbar ${darkMode ? 'dark' : 'light'} pt-2`}
+            className={`custom-navbar ${darkMode ? 'dark' : 'light'} `}
             expand="lg"
             fixed='top'
             variant={darkMode ? 'dark' : 'light'}
@@ -26,7 +26,7 @@ function CustomNavbar({ darkMode, handleThemeChange }) {
                 <div className="d-flex align-items-center mx-2">
                     <Nav className="mx-5">
                         {tabs.map(tab => (
-                            <Nav.Link key={tab.id} href={`#${tab.id}`} className="px-4 mx-4">{tab.text}</Nav.Link>
+                            <Nav.Link key={tab.id} href={`#${tab.id}`} onClick={() => handleTabChange(tab.id)} className={`px-4 mx-4 fw-bold ${activeTab === tab.id ? 'active' : ''}`}>{tab.text}</Nav.Link>
                         ))}
                     </Nav>
                     <div className="toggle-switch-container mx-5">
@@ -34,7 +34,7 @@ function CustomNavbar({ darkMode, handleThemeChange }) {
                         <label className="toggle-switch-label" htmlFor="toggle-switch">
                             <div className="toggle-switch-ball"></div>
                         </label>
-                        <div className="theme-icon">{darkMode ? <BsSun /> : <BsMoon />}</div>
+                        <div className="theme-icon">{darkMode ? <BsMoon /> : <BsSun />}</div>
                     </div>
                 </div>
             </Container>
