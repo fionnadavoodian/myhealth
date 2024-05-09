@@ -6,6 +6,8 @@ import { ReactComponent as NavLight } from './images/navbar-light.svg';
 import MainPage from './components/MainPage';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
+import SignUp from './components/SignUp';
+
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -27,10 +29,6 @@ function App() {
         {activeTab === 'home' ? <MainPage darkMode={darkMode} /> : activeTab === 'about' ? <AboutUs darkMode={darkMode} /> : <ContactUs darkMode={darkMode} />}
       </div>
 
-
-
-
-      {/* <MainPage darkMode={darkMode} /> */}
     </>
   );
 }

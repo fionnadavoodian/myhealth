@@ -4,13 +4,24 @@
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     position: fixed;
     width: 100vw;
+    font-size: 1.15vw;
 }
 
-.navbar-item:active {
+.navbar-item-container {
     color: calc(var(--text-color) - 20);
+    align-self: flex-start;
+
+}
+
+.navbar-brand {
+    font-size: 3vw;
+    align-self: flex-start;
+    margin: 1vw;
+    margin-left: 3vw;
+
 }
 
 .dark .navbar-brand,
@@ -27,8 +38,7 @@
 
 .toggle-switch-container {
     display: flex;
-    align-items: center;
-    position: relative;
+    align-self: first baseline;
 }
 
 .toggle-switch-checkbox {
@@ -69,4 +79,5 @@
     margin-left: 10px;
     font-size: 1.5vw;
     transition: 0.3s;
+
 }

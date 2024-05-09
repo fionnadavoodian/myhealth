@@ -1,5 +1,4 @@
 // MainPage.jsx
-
 import React from 'react';
 import { Container, Button } from 'react-bootstrap';
 import '../styles/MainPage.css';
@@ -16,7 +15,9 @@ function MainPage({ darkMode }) {
                 {darkMode ? <MainPageDark className="image-svg" /> : <MainPageLight className="image-svg" />}
             </div>
             <h2 className="main-page-heading">Your Personal Health Assistant</h2>
-            <Button href="#" variant={buttonVariant} className="main-page-button px-5 fw-bold fs-5">Get Started</Button>
+            <a href="./components/SignUp">
+                <Button variant={buttonVariant} className="main-page-button px-5 fw-bold fs-5">Get Started</Button>
+            </a>
             <p className="main-page-sign-in mt-2 pb-3"> Already have an account? <a href="#">Sign in</a></p>
         </Container>
 
