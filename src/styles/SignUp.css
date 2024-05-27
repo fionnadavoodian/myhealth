@@ -1,0 +1,103 @@
+.signup-container {
+    width: calc(100% - 150px);
+    max-width: 1200px;
+    height: 95%;
+    padding: 2vw;
+    padding-bottom: 0px;
+    text-align: center;
+    font-family: Arial;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    /* border: solid 2px var(--text-color); */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+}
+
+.signup-box {
+    margin-top: 7vb;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.signup-heading {
+    font-size: 2vw;
+}
+
+.form-box {
+    margin-top: 7vb;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.stepper {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: lightgray;
+    color: white;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.step.active span {
+    background: var(--text-color);
+
+}
+
+.step p {
+    margin: 0;
+}
+
+/* healthInformation */
+.health-information-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.health-question {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 10px;
+}
+
+.radio-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.form-label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.form-control {
+    max-width: 100px;
+}
+
+/* healthInformation */
