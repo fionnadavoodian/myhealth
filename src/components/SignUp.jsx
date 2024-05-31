@@ -28,11 +28,9 @@ const SignUp = ({ darkMode }) => {
             tobaccoSmoking: '',
             weight: '',
             height: ''
-        },
-        checkInfo: {
-            // Add check information fields here
         }
     });
+    const [errors, setErrors] = useState({});
 
     const handleInputChange = (section, name, value) => {
         setFormData(prevData => ({
@@ -42,10 +40,21 @@ const SignUp = ({ darkMode }) => {
                 [name]: value
             }
         }));
+        setErrors(prevErrors => ({
+            ...prevErrors,
+            [section]: {
+                ...prevErrors[section],
+                [name]: !value ? `The ${name} is required` : ''
+            }
+        }));
     };
 
     const handleNext = () => {
-        setStep(step + 1);
+        if (isStepComplete()) {
+            setStep(step + 1);
+        } else {
+            validateStep();
+        }
     };
 
     const handlePrevious = () => {
@@ -55,6 +64,23 @@ const SignUp = ({ darkMode }) => {
     const isStepComplete = () => {
         const currentStepData = formData[getCurrentStepKey()];
         return Object.values(currentStepData).every(value => value !== '');
+    };
+
+    const validateStep = () => {
+        const currentStepKey = getCurrentStepKey();
+        const currentStepData = formData[currentStepKey];
+        const newErrors = {};
+
+        Object.keys(currentStepData).forEach(key => {
+            if (!currentStepData[key]) {
+                newErrors[key] = `The ${key} is required`;
+            }
+        });
+
+        setErrors(prevErrors => ({
+            ...prevErrors,
+            [currentStepKey]: newErrors
+        }));
     };
 
     const getCurrentStepKey = () => {
@@ -77,6 +103,7 @@ const SignUp = ({ darkMode }) => {
                     <PersonalInformation
                         formData={formData.personalInfo}
                         handleInputChange={(name, value) => handleInputChange('personalInfo', name, value)}
+                        errors={errors.personalInfo || {}}
                     />
                 );
             case 2:
@@ -84,13 +111,13 @@ const SignUp = ({ darkMode }) => {
                     <HealthInformation
                         formData={formData.healthInfo}
                         handleInputChange={(name, value) => handleInputChange('healthInfo', name, value)}
+                        errors={errors.healthInfo || {}}
                     />
                 );
             case 3:
                 return (
                     <CheckInformation
-                        formData={formData.checkInfo}
-                        handleInputChange={(name, value) => handleInputChange('checkInfo', name, value)}
+                        formData={formData}
                     />
                 );
             default:
@@ -101,25 +128,23 @@ const SignUp = ({ darkMode }) => {
     const buttonVariant = darkMode ? 'dark' : 'light';
 
     return (
-        <Container className={`signup-container ${darkMode ? 'dark' : 'light'}`}>
-            <div className="signup-box">
-                <h2 className="signup-heading">Sign Up</h2>
-                <div className="stepper">
-                    <div className={`step ${step >= 1 ? 'active' : ''}`}>
-                        <span>1</span>
-                        <p>Personal Information</p>
-                    </div>
-                    <div className={`step ${step >= 2 ? 'active' : ''}`}>
-                        <span>2</span>
-                        <p>Medical Information</p>
-                    </div>
-                    <div className={`step ${step >= 3 ? 'active' : ''}`}>
-                        <span>3</span>
-                        <p>Check Information</p>
-                    </div>
+        <Container className={`signup-box ${darkMode ? 'dark' : 'light'}`}>
+            <h2 className="signup-heading mb-3">Sign Up</h2>
+            <div className="stepper">
+                <div className={`step ${step >= 1 ? 'active' : ''}`}>
+                    <span>1</span>
+                    <p>Personal Information</p>
                 </div>
-                {renderStepContent()}
+                <div className={`step ${step >= 2 ? 'active' : ''}`}>
+                    <span>2</span>
+                    <p>Medical Information</p>
+                </div>
+                <div className={`step ${step >= 3 ? 'active' : ''}`}>
+                    <span>3</span>
+                    <p>Check Information</p>
+                </div>
             </div>
+            {renderStepContent()}
             <div className="signup-buttons">
                 {step > 1 && (
                     <Button variant={buttonVariant} onClick={handlePrevious} className="mx-2">
@@ -131,7 +156,7 @@ const SignUp = ({ darkMode }) => {
                         variant={buttonVariant}
                         onClick={handleNext}
                         disabled={!isStepComplete()}
-                        className="mx-2"
+                        className="mx-2 next-button"
                     >
                         Next
                     </Button>
@@ -139,13 +164,12 @@ const SignUp = ({ darkMode }) => {
                     <Button
                         variant={buttonVariant}
                         className="mx-2"
-                    // Add onClick handler for form submission if needed
+                        onClick={() => alert('Form Submitted!')}
                     >
                         Done
                     </Button>
                 )}
             </div>
-
         </Container>
     );
 };

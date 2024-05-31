@@ -1,17 +1,17 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
-const PersonalInformation = ({ formData, handleInputChange }) => {
+const PersonalInformation = ({ formData, handleInputChange, errors }) => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         handleInputChange(name, value);
     };
 
     return (
-        <Form >
+        <Form>
             <div className="row">
                 <div className="col-md-6 col-12">
-                    <div>
+                    <div className="form-group">
                         <label className="form-label" htmlFor="firstName">First Name</label>
                         <input
                             name="firstName"
@@ -21,8 +21,9 @@ const PersonalInformation = ({ formData, handleInputChange }) => {
                             value={formData.firstName}
                             onChange={handleChange}
                         />
+                        {errors.firstName && <small className="error-text">{errors.firstName}</small>}
                     </div>
-                    <div>
+                    <div className="form-group">
                         <label className="form-label" htmlFor="lastName">Last Name</label>
                         <input
                             name="lastName"
@@ -32,8 +33,9 @@ const PersonalInformation = ({ formData, handleInputChange }) => {
                             value={formData.lastName}
                             onChange={handleChange}
                         />
+                        {errors.lastName && <small className="error-text">{errors.lastName}</small>}
                     </div>
-                    <div>
+                    <div className="form-group">
                         <label className="form-label" htmlFor="dob">Date of Birth</label>
                         <input
                             name="dob"
@@ -43,8 +45,9 @@ const PersonalInformation = ({ formData, handleInputChange }) => {
                             value={formData.dob}
                             onChange={handleChange}
                         />
+                        {errors.dob && <small className="error-text">{errors.dob}</small>}
                     </div>
-                    <div>
+                    <div className="form-group">
                         <label className="form-label" htmlFor="gender">Gender</label>
                         <select
                             name="gender"
@@ -58,10 +61,11 @@ const PersonalInformation = ({ formData, handleInputChange }) => {
                             <option value="female">Female</option>
                             <option value="other">Other</option>
                         </select>
+                        {errors.gender && <small className="error-text">{errors.gender}</small>}
                     </div>
                 </div>
                 <div className="col-md-6 col-12">
-                    <div>
+                    <div className="form-group">
                         <label className="form-label" htmlFor="email">Email</label>
                         <input
                             name="email"
@@ -71,8 +75,9 @@ const PersonalInformation = ({ formData, handleInputChange }) => {
                             value={formData.email}
                             onChange={handleChange}
                         />
+                        {errors.email && <small className="error-text">{errors.email}</small>}
                     </div>
-                    <div>
+                    <div className="form-group">
                         <label className="form-label" htmlFor="password">Password</label>
                         <input
                             name="password"
@@ -82,6 +87,7 @@ const PersonalInformation = ({ formData, handleInputChange }) => {
                             value={formData.password}
                             onChange={handleChange}
                         />
+                        {errors.password && <small className="error-text">{errors.password}</small>}
                     </div>
                 </div>
             </div>

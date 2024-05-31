@@ -1,7 +1,10 @@
 /* MainPage.css */
 
-.main-page-container {
-    width: calc(100% - 150px);
+.main-page-box {
+    z-index: 5;
+    color: var(--text-color);
+    margin-top: 7vb;
+    width: 100%;
     max-width: 1200px;
     height: 95%;
     padding: 2vw;
@@ -13,10 +16,6 @@
     flex-direction: column;
     justify-content: end;
     align-items: center;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    /* border: solid 2px var(--text-color); */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .main-page-heading {
@@ -52,6 +51,7 @@
     width: 100;
     padding: 5px;
     display: inline-flex;
+    color: var(--text-color);
     flex-direction: row;
     align-items: first baseline;
 }
