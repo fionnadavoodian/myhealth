@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import '../styles/SignUp.css';
 import PersonalInformation from './PersonalInformation';
 import HealthInformation from './HealthInformation';
 import CheckInformation from './CheckInformation';
+import Alert from './Alert';
 
 const SignUp = ({ darkMode }) => {
     const [step, setStep] = useState(1);
@@ -23,7 +24,7 @@ const SignUp = ({ darkMode }) => {
             gastricSurgery: '',
             peniciousAnemia: '',
             familyHistory: '',
-            lowFruitVegConsumption: '',
+            lowFruitVegetableConsumption: '',
             highSaltIntake: '',
             tobaccoSmoking: '',
             weight: '',
@@ -31,6 +32,8 @@ const SignUp = ({ darkMode }) => {
         }
     });
     const [errors, setErrors] = useState({});
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
     const handleInputChange = (section, name, value) => {
         setFormData(prevData => ({
@@ -49,13 +52,18 @@ const SignUp = ({ darkMode }) => {
         }));
     };
 
+
     const handleNext = () => {
-        if (isStepComplete()) {
-            setStep(step + 1);
+        if (validateStep()) {
+            setAlertMessage('Please fill in all required fields');
+            setShowAlert(true);
         } else {
-            validateStep();
+            console.log('Form Data:', formData);
+            setStep(step + 1);
         }
     };
+
+
 
     const handlePrevious = () => {
         setStep(step - 1);
@@ -70,10 +78,13 @@ const SignUp = ({ darkMode }) => {
         const currentStepKey = getCurrentStepKey();
         const currentStepData = formData[currentStepKey];
         const newErrors = {};
+        let hasErrors = false;
 
         Object.keys(currentStepData).forEach(key => {
             if (!currentStepData[key]) {
                 newErrors[key] = `The ${key} is required`;
+
+                hasErrors = true;
             }
         });
 
@@ -81,7 +92,10 @@ const SignUp = ({ darkMode }) => {
             ...prevErrors,
             [currentStepKey]: newErrors
         }));
+
+        return hasErrors;
     };
+
 
     const getCurrentStepKey = () => {
         switch (step) {
@@ -127,6 +141,15 @@ const SignUp = ({ darkMode }) => {
 
     const buttonVariant = darkMode ? 'dark' : 'light';
 
+    useEffect(() => {
+        if (showAlert) {
+            const timer = setTimeout(() => {
+                setShowAlert(false);
+            }, 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [showAlert]);
+
     return (
         <Container className={`signup-box ${darkMode ? 'dark' : 'light'}`}>
             <h2 className="signup-heading mb-3">Sign Up</h2>
@@ -145,6 +168,12 @@ const SignUp = ({ darkMode }) => {
                 </div>
             </div>
             {renderStepContent()}
+            {showAlert && (
+                <Alert
+                    message={alertMessage}
+                    onClose={() => setShowAlert(false)}
+                />
+            )}
             <div className="signup-buttons">
                 {step > 1 && (
                     <Button variant={buttonVariant} onClick={handlePrevious} className="mx-2">
@@ -155,7 +184,6 @@ const SignUp = ({ darkMode }) => {
                     <Button
                         variant={buttonVariant}
                         onClick={handleNext}
-                        disabled={!isStepComplete()}
                         className="mx-2 next-button"
                     >
                         Next

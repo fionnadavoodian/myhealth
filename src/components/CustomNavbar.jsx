@@ -26,7 +26,7 @@ function CustomNavbar({ darkMode, handleThemeChange, handleTabChange, activeTab 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                     <div className="navbar-item-container">
-                        <Nav className="mx-5">
+                        <Nav >
                             {tabs.map(tab => (
                                 <Nav.Link
                                     key={tab.id}

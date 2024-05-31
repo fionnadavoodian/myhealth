@@ -55,6 +55,11 @@
     padding: 0.5rem 1rem;
 }
 
+.nav-link:focus,
+.nav-link.active {
+    color: var(--text-color);
+}
+
 .toggle-switch-container {
     display: flex;
     align-items: center;

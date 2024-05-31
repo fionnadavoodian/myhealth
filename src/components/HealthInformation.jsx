@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import HumanDark from '../images/human-dark.png';
 import HumanLight from '../images/human-light.png';
 
 const HealthInformation = ({ darkMode, formData, handleInputChange, errors }) => {
+    const [bmi, setBmi] = useState(null);
+    const [bmiMessage, setBmiMessage] = useState('');
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         handleInputChange(name, value);
@@ -16,41 +19,65 @@ const HealthInformation = ({ darkMode, formData, handleInputChange, errors }) =>
         'gastricSurgery',
         'peniciousAnemia',
         'familyHistory',
-        'lowFruitVegConsumption',
+        'lowFruitVegetableConsumption',
         'highSaltIntake',
         'tobaccoSmoking'
     ];
 
-    const renderRadioButtons = (name) => (
-        <div key={name} className="form-group">
-            <label className="form-label">{name.replace(/([A-Z])/g, ' $1').toUpperCase()}: </label>
-            <div className="form-check-group">
-                <div className="form-check form-check-inline">
-                    <input
-                        type="radio"
-                        name={name}
-                        value="yes"
-                        checked={formData[name] === 'yes'}
-                        onChange={handleChange}
-                        className="form-check-input"
-                    />
-                    <label className="form-check-label">Yes</label>
-                </div>
-                <div className="form-check form-check-inline">
-                    <input
-                        type="radio"
-                        name={name}
-                        value="no"
-                        checked={formData[name] === 'no'}
-                        onChange={handleChange}
-                        className="form-check-input"
-                    />
-                    <label className="form-check-label">No</label>
+    const renderRadioButtons = (name) => {
+        const options = name === 'tobaccoSmoking'
+            ? ['low', 'moderate', 'high']
+            : ['yes', 'no'];
+
+        return (
+            <div key={name} className="form-group">
+                <label className="form-label">{name.replace(/([A-Z])/g, ' $1').toUpperCase()}: </label>
+                <div className="form-check-group">
+                    {options.map(option => (
+                        <div key={option} className="form-check form-check-inline">
+                            <input
+                                type="radio"
+                                name={name}
+                                value={option}
+                                checked={formData[name] === option}
+                                onChange={handleChange}
+                                className="form-check-input"
+                            />
+                            <label className="form-check-label">{option.charAt(0).toUpperCase() + option.slice(1)}</label>
+                        </div>
+                    ))}
                 </div>
             </div>
-            {errors[name] && <small className="error-text">{errors[name]}</small>}
-        </div>
-    );
+        );
+    };
+
+    useEffect(() => {
+        if (formData.weight && formData.height) {
+            const heightInMeters = formData.height / 100;
+            const calculatedBmi = (formData.weight / (heightInMeters * heightInMeters)).toFixed(2);
+            setBmi(calculatedBmi);
+            determineBmiCategory(calculatedBmi);
+        } else {
+            setBmi(null);
+            setBmiMessage('');
+        }
+    }, [formData.weight, formData.height]);
+
+    const determineBmiCategory = (bmi) => {
+        let category = '';
+
+        if (bmi < 18.5) {
+            category = 'underweight';
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+            category = 'normal weight';
+        } else if (bmi >= 25 && bmi < 29.9) {
+            category = 'overweight';
+        } else if (bmi >= 30) {
+            category = 'obese';
+        }
+
+        setBmiMessage(<>Your BMI is <strong>{bmi}</strong> and you are <strong>{category}</strong>.</>);
+    };
 
     return (
         <Form>
@@ -69,12 +96,11 @@ const HealthInformation = ({ darkMode, formData, handleInputChange, errors }) =>
                                 name="weight"
                                 type="number"
                                 id="weight"
-                                className="form-control"
+                                className={`form-control ${errors.weight ? 'is-invalid' : ''}`}
                                 value={formData.weight}
                                 onChange={handleChange}
                             />
                             <span className="unit-label">kg</span>
-                            {errors.weight && <small className="error-text">{errors.weight}</small>}
                         </div>
                     </div>
                     <div className="form-group">
@@ -84,14 +110,18 @@ const HealthInformation = ({ darkMode, formData, handleInputChange, errors }) =>
                                 name="height"
                                 type="number"
                                 id="height"
-                                className="form-control"
+                                className={`form-control ${errors.height ? 'is-invalid' : ''}`}
                                 value={formData.height}
                                 onChange={handleChange}
                             />
                             <span className="unit-label">cm</span>
-                            {errors.height && <small className="error-text">{errors.height}</small>}
                         </div>
                     </div>
+                    {bmi && (
+                        <div className="bmi-box">
+                            <p className="bmi-text">{bmiMessage}</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </Form>

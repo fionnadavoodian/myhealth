@@ -1,17 +1,20 @@
-.contact-us-container {
-    width: calc(100% - 150px);
+.contact-us-box {
+    z-index: 5;
+    color: var(--text-color);
+    margin-top: -7vb;
+    width: 100%;
+    max-width: 1200px;
     height: 95%;
-    padding: 15vw;
+    padding: 2vw;
+    padding-bottom: 0px;
     text-align: center;
+    font-family: Arial;
     border-radius: 30px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    /* border: solid 2px var(--text-color); */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .contact-form {
