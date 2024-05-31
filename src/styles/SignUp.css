@@ -90,7 +90,7 @@
     align-items: flex-start;
 }
 
-/* .form-group {
+.form-group {
     position: relative;
     margin-bottom: 3rem;
     margin-top: 2rem;
@@ -105,7 +105,7 @@
     color: var(--text-color);
     padding: 0 0.25rem;
     transform: translateY(-50%);
-}*/
+}
 
 .form-control {
     width: 100%;
@@ -123,29 +123,37 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-items: flex-start;
     flex: 2;
+    margin-top: 25px;
 }
 
 .health-box-radio .form-group {
     display: flex;
     align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
     color: var(--text-color);
     width: 100%;
-
+    font-size: 0.8rem;
 }
 
 .health-box-radio .form-label {
     flex: 1;
     margin-right: 10px;
     text-align: left;
-    font-size: 0.8rem;
     color: var(--text-color);
+    top: 0;
+    left: 0;
+    font-size: 0.99rem;
+    font-weight: 700;
+    color: var(--text-color);
+
 }
 
 .health-box-radio .form-check-group {
     display: flex;
     justify-content: flex-end;
-    align-items: flex-start;
     flex: 1;
 }
 
